@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'views/login_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  
+  WidgetsFlutterBinding.ensureInitialized();
+
+  //bloquear la orientación del dispositivo
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(const MyApp()); 
+
 }
 
 class MyApp extends StatelessWidget {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
-import 'registration_page.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:go_router/go_router.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,10 +26,9 @@ class _LoginPageState extends State<LoginPage> {
 
     // Usuario de prueba cambiar al terminar
     if (user == 'usuario' && pass == '12345678') {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
-      );
+      GetStorage().write('isLoggedIn', true);
+      GetStorage().write('user', _userController.text);
+      context.go('/homepage');
     } else {
       _showSnackBar('Usuario o contraseña incorrectos');
     }
@@ -76,10 +76,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const RegistrationPage()),
-                );
+              
+                context.push('/sigin');
               },
               child: const Text('¿No tienes cuenta? Regístrate'),
             ),

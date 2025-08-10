@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
+import 'package:proyecto_final/views/agregar_medicamento.dart';
 import 'package:proyecto_final/views/home_page.dart';
 import 'package:proyecto_final/views/login_page.dart';
 import 'package:proyecto_final/views/registration_page.dart';
@@ -37,6 +38,12 @@ final router = GoRouter(
       path: '/homepage', // /home/perfil
       builder: (context, state) {
         return const HomePage();
+      },
+    ),GoRoute(
+      name: 'agregarMedicamento',
+      path: '/agregar', // /home/perfil
+      builder: (context, state) {
+        return const AgregarMedicamento();
       },
     ),
   ],

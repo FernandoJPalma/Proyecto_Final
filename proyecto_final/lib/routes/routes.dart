@@ -8,51 +8,47 @@ import 'package:proyecto_final/views/medicamentos_agregados.dart';
 import 'package:proyecto_final/views/registration_page.dart';
 
 final router = GoRouter(
-<<<<<<< HEAD
-  initialLocation: '/homepage',
-=======
-  initialLocation: '/login',
->>>>>>> fd6d0926e41e911e45655b60f81871fc9ef39259
   redirect: (BuildContext context, GoRouterState state) {
-    final isLoggedIn = GetStorage().read('isLoggedIn') ?? false;
+    final usuarioStorage = 'usuarioStorage';
+    final isLoggedIn = GetStorage(usuarioStorage).read('isLoggedIn') ?? false;
 
-    if (!isLoggedIn) { // borra todos los datos del alamcenamiento
-      GetStorage().remove('user'); // borra los datos de la clave proporcionada
-      return '/login';
+    if (isLoggedIn) { 
+      return '/homepage';
     }
 
     return null;
   },
+  initialLocation: '/login',
   routes: [
     GoRoute(
       name: 'login',
-      path: '/login', // /home/perfil
+      path: '/login', 
       builder: (context, state) {
         return const LoginPage();
       },
     ),
     GoRoute(
-      name: 'sigin',
-      path: '/sigin', // /home/perfil
+      name: 'signIn',
+      path: '/signIn',
       builder: (context, state) {
         return const RegistrationPage();
       },
     ),
     GoRoute(
       name: 'homePage',
-      path: '/homepage', // /home/perfil
+      path: '/homepage', 
       builder: (context, state) {
         return HomePage();
       },
     ),GoRoute(
       name: 'agregarMedicamento',
-      path: '/agregar', // /home/perfil
+      path: '/agregar', 
       builder: (context, state) {
         return AgregarMedicamento();
       },
     ),GoRoute(
       name: 'lista-medicamentos',
-      path: '/lista-medicamentos', // /home/perfil
+      path: '/lista-medicamentos', 
       builder: (context, state) {
         return MedicamentosAgregados();
       },

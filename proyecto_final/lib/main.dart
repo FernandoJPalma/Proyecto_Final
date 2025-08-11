@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'routes/routes.dart';
 
 void main() async {
-  await GetStorage.init();
+  await GetStorage.init('usuarioStorage');
   WidgetsFlutterBinding.ensureInitialized();
   
   //bloquear la orientación del dispositivo

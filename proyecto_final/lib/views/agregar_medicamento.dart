@@ -13,15 +13,23 @@ class AgregarMedicamento extends StatelessWidget {
     final horariosController = TextEditingController();
 
     void _AgregarMedicina() {
+
+      //Hacer las validaciones respectivas de cada campo
+
+      storage.remove('medicamentos');
       agregarMedicamento(
         Medicamento(
           nombre: nombreController.text,
           dosis: dosisController.text,
           frecuencia: frecuenciaController.text,
-          horarios: [TimeOfDay.now(), TimeOfDay.now(), TimeOfDay.now()],
-          descripcion: null
         ),
       );
+      obtenerMedicamento()?.forEach((element) {
+        print(element.nombre);
+        print(element.dosis);
+        print(element.frecuencia);
+        print(element.descripcion);
+      });
     }
 
     return Scaffold(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -9,7 +8,6 @@ class Medicamento {
   final String nombre;
   final String dosis;
   final String frecuencia;
-  final List<TimeOfDay> horarios;
   final String? descripcion;
 
   Medicamento({
@@ -17,7 +15,6 @@ class Medicamento {
     required this.nombre,
     required this.dosis,
     required this.frecuencia,
-    required this.horarios,
     this.descripcion,
   });
 
@@ -26,43 +23,29 @@ class Medicamento {
     nombre: map["nombre"],
     dosis: map["dosis"],
     frecuencia: map["frecuencia"],
-    horarios: map["horarios"],
     descripcion: map["descripcion"],
   );
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
     // "id": id,
     'nombre': nombre,
     'dosis': dosis,
     'frecuencia': frecuencia,
-    'horarios': horarios,
     'descripcion': descripcion,
   };
 }
 
 void agregarMedicamento(Medicamento nuevomd) {
-  // final getMd = storage.read('medicamentos');
-  // final getMd = Medicamento.fromMap(storage.read('medicamentos')).toList();
   final medicamentos = obtenerMedicamento();
-  
-  print(storage.read('medicamentos'));
-  if (medicamentos == null) {
-    List<Medicamento> medi = [];
-    medi.add(nuevomd);
-    print(obtenerMedicamento());
-    storage.write('medicamentos', List<Medicamento>.from(medi.map((med) => med.toMap()).toList())); 
+  if (obtenerMedicamento()==null) {
+    storage.write('medicamentos', [nuevomd]);
+    // print(storage.read('medicamentos'));
+  }else{
+    medicamentos?.add(nuevomd);
+    storage.write('medicamentos', medicamentos);
   }
 }
 
 List<Medicamento>? obtenerMedicamento() {
-  if(storage.read('medicamentos')!=null){
-    final medicamentos = List<Medicamento>.from(
-      storage.read('medicamentos').map(((res)=>Medicamento.fromJson(res)))
-      );
-     return medicamentos;
-  }else {
-    return null;
-  }
-  
+  return storage.read('medicamentos');
 }
-

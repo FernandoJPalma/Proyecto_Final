@@ -7,7 +7,7 @@ import 'package:proyecto_final/views/login_page.dart';
 import 'package:proyecto_final/views/registration_page.dart';
 
 final router = GoRouter(
-  initialLocation: '/login',
+  initialLocation: '/agregar',
   redirect: (BuildContext context, GoRouterState state) {
     final isLoggedIn = GetStorage().read('isLoggedIn') ?? false;
 

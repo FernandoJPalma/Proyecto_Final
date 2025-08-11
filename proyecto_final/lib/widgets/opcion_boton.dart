@@ -20,7 +20,18 @@ class Opcion extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.home, size: 40, color: Colors.blueGrey),
+          //Icon(Icons.home, size: 40, color: Colors.blueGrey),
+          Icon(
+            nombreOpcion == 'Agregar Medicamento'
+                ? Icons.medication 
+                : nombreOpcion == 'Eliminar Medicamentos'
+                    ? Icons.delete 
+                    : nombreOpcion == 'Modificar Medicamento'
+                        ? Icons.edit 
+                        : Icons.list_alt, 
+            size: 40,
+            color: Colors.blueGrey,
+          ),
           SizedBox(height: 10),
           Text(nombreOpcion, style: TextStyle(color: Colors.black)),
         ],

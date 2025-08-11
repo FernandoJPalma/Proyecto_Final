@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'package:go_router/go_router.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -29,10 +29,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       }
 
       // Aquí podrías guardar la información del usuario
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
-      );
+      context.go('/home');
     }
   }
 

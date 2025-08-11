@@ -11,20 +11,32 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
   final _userController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
+  final usuarioStorage = GetStorage('usuarioStorage');
 
   void _login() {
-    final user = _userController.text.trim();
-    final pass = _passwordController.text;
-
-    if (user.isEmpty || pass.isEmpty) {
-      _showSnackBar('Todos los campos son obligatorios');
+    if (!_formKey.currentState!.validate()) {
       return;
     }
+    final user = _userController.text;
+    final pass = _passwordController.text;
 
-    // Usuario de prueba cambiar al terminar
+    if (user == usuarioStorage.read('usuario') && pass == usuarioStorage.read('password')){
+      usuarioStorage.write('isLoggedIn', true);
+      context.go('/homepage');
+    } else {
+      _showSnackBar('Usuario o contraseña incorrectos');
+    }
+
+
+
+    //TODO: Borrar antes de mandar 
+    // Usuario de prueba para el desarrollo
+    /*
     if (user == 'usuario' && pass == '12345678') {
       GetStorage().write('isLoggedIn', true);
       GetStorage().write('user', _userController.text);
@@ -32,7 +44,9 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       _showSnackBar('Usuario o contraseña incorrectos');
     }
+    */
   }
+  
 
   void _showSnackBar(String mensaje) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -46,13 +60,17 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(title: const Text('Iniciar sesión')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
+        child: Form(
+          key: _formKey,
+          child: ListView(
           children: [
-            TextField(
+            TextFormField(
               controller: _userController,
               decoration: const InputDecoration(labelText: 'Usuario'),
+              validator: (value) =>
+                    value!.isEmpty ? 'Este campo es obligatorio' : null,
             ),
-            TextField(
+            TextFormField(
               controller: _passwordController,
               obscureText: _obscurePassword,
               decoration: InputDecoration(
@@ -68,6 +86,8 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
               ),
+                validator: (value) =>
+                    value!.isEmpty ? 'Este campo es obligatorio' : null,
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -76,12 +96,12 @@ class _LoginPageState extends State<LoginPage> {
             ),
             TextButton(
               onPressed: () {
-              
-                context.push('/sigin');
+                context.push('/signIn');
               },
               child: const Text('¿No tienes cuenta? Regístrate'),
             ),
           ],
+          ),
         ),
       ),
     );

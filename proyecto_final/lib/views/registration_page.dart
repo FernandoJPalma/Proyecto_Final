@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:get_storage/get_storage.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -14,9 +15,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _nombreController = TextEditingController();
   final _usuarioController = TextEditingController();
   final _correoController = TextEditingController();
-  final _telefonoController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+
+  final usuarioStorage = GetStorage('usuarioStorage');
+
 
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
@@ -28,8 +31,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
         return;
       }
 
+
       // Aquí podrías guardar la información del usuario
     context.go('/homepage');
+
+      // Guardado de datos en GetStorage
+      usuarioStorage.write('nombre', _nombreController.text);
+      usuarioStorage.write('usuario', _usuarioController.text);
+      usuarioStorage.write('correo', _correoController.text);
+      usuarioStorage.write('password', _passwordController.text);
+      usuarioStorage.write('isLoggedIn', true);
+
+      _mostrarSnackBar('Usuario registrado correctamente');
+
+      context.go('/homepage');
+
     }
   }
 
@@ -44,7 +60,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
     _nombreController.dispose();
     _usuarioController.dispose();
     _correoController.dispose();
-    _telefonoController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
@@ -76,13 +91,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 controller: _correoController,
                 decoration: const InputDecoration(labelText: 'Correo'),
                 keyboardType: TextInputType.emailAddress,
-                validator: (value) =>
-                    value!.isEmpty ? 'Este campo es obligatorio' : null,
-              ),
-              TextFormField(
-                controller: _telefonoController,
-                decoration: const InputDecoration(labelText: 'Teléfono'),
-                keyboardType: TextInputType.phone,
                 validator: (value) =>
                     value!.isEmpty ? 'Este campo es obligatorio' : null,
               ),

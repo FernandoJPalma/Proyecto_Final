@@ -7,7 +7,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart';
 
 void main() async {
-  await GetStorage.init();
+  await GetStorage.init('usuarioStorage');
   WidgetsFlutterBinding.ensureInitialized();
   
   //bloquear la orientación del dispositivo

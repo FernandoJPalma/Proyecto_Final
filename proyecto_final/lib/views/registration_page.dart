@@ -29,7 +29,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
       }
 
       // Aquí podrías guardar la información del usuario
+<<<<<<< HEAD
       context.go('/homepage');
+=======
+      context.go('/home');
+>>>>>>> fd6d0926e41e911e45655b60f81871fc9ef39259
     }
   }
 

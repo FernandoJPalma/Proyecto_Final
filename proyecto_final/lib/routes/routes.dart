@@ -8,11 +8,9 @@ import 'package:proyecto_final/views/medicamentos_agregados.dart';
 import 'package:proyecto_final/views/registration_page.dart';
 
 final router = GoRouter(
-<<<<<<< HEAD
+
   initialLocation: '/homepage',
-=======
-  initialLocation: '/login',
->>>>>>> fd6d0926e41e911e45655b60f81871fc9ef39259
+
   redirect: (BuildContext context, GoRouterState state) {
     final isLoggedIn = GetStorage().read('isLoggedIn') ?? false;
 

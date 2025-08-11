@@ -1,35 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proyecto_final/config/validations.dart';
+import 'package:proyecto_final/controllers/medicamentos_controller.dart';
 import 'package:proyecto_final/models/medicamento.dart';
 
 class AgregarMedicamento extends StatelessWidget {
-  const AgregarMedicamento({super.key});
-
+  AgregarMedicamento({super.key});
+  final medicamentoController = Get.find<MedicamentosController>();
   @override
   Widget build(BuildContext context) {
     final nombreController = TextEditingController();
     final dosisController = TextEditingController();
     final frecuenciaController = TextEditingController();
-    final horariosController = TextEditingController();
+    final descripcionController = TextEditingController();
 
     void _AgregarMedicina() {
-
-      //Hacer las validaciones respectivas de cada campo
-
-      storage.remove('medicamentos');
-      agregarMedicamento(
-        Medicamento(
-          nombre: nombreController.text,
-          dosis: dosisController.text,
-          frecuencia: frecuenciaController.text,
-        ),
+      final Medicamento med = Medicamento(
+        nombre: nombreController.text,
+        dosis: dosisController.text,
+        frecuencia: frecuenciaController.text,
+        descripcion: descripcionController.text,
       );
-      obtenerMedicamento()?.forEach((element) {
-        print(element.nombre);
-        print(element.dosis);
-        print(element.frecuencia);
-        print(element.descripcion);
-      });
+      medicamentoController.agregarMedicamento(med);
     }
 
     return Scaffold(
@@ -82,7 +74,7 @@ class AgregarMedicamento extends StatelessWidget {
             },
           ),
           TextFieldBasic(
-            txtController: horariosController,
+            txtController: descripcionController,
             label: Text('Hora de inicio (Opcional)'),
             hintText:
                 'Especifique la hora de inicio, si no se asigna la hora actual',

@@ -19,8 +19,8 @@ class OpcionesMain extends StatelessWidget {
               nombreRuta: '/agregar',
             ),
             Opcion(
-              nombreOpcion: 'Agregar Medicamento',
-              nombreRuta: '/agregar',
+              nombreOpcion: 'Ver medicamentos',
+              nombreRuta: '/lista-medicamentos',
             ),
             Opcion(
               nombreOpcion: 'Agregar Medicamento',

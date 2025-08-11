@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:proyecto_final/controllers/medicamentos_controller.dart';
 import 'package:proyecto_final/widgets/opciones_main.dart';
 import '../widgets/side_menu.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+  HomePage({super.key});
+  final medicamentoController = Get.put<MedicamentosController>(
+    MedicamentosController(),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +50,7 @@ class HomePage extends StatelessWidget {
             style: TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 20),
-          OpcionesMain()
+          OpcionesMain(),
         ],
       ),
     );

@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
-
-final storage = GetStorage();
-
 class Medicamento {
   // final int id;
   final String nombre;
@@ -33,19 +28,4 @@ class Medicamento {
     'frecuencia': frecuencia,
     'descripcion': descripcion,
   };
-}
-
-void agregarMedicamento(Medicamento nuevomd) {
-  final medicamentos = obtenerMedicamento();
-  if (obtenerMedicamento()==null) {
-    storage.write('medicamentos', [nuevomd]);
-    // print(storage.read('medicamentos'));
-  }else{
-    medicamentos?.add(nuevomd);
-    storage.write('medicamentos', medicamentos);
-  }
-}
-
-List<Medicamento>? obtenerMedicamento() {
-  return storage.read('medicamentos');
 }

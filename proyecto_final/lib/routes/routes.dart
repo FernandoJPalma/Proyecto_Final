@@ -4,10 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:proyecto_final/views/agregar_medicamento.dart';
 import 'package:proyecto_final/views/home_page.dart';
 import 'package:proyecto_final/views/login_page.dart';
+import 'package:proyecto_final/views/medicamentos_agregados.dart';
 import 'package:proyecto_final/views/registration_page.dart';
 
 final router = GoRouter(
-  initialLocation: '/agregar',
+  initialLocation: '/homepage',
   redirect: (BuildContext context, GoRouterState state) {
     final isLoggedIn = GetStorage().read('isLoggedIn') ?? false;
 
@@ -37,14 +38,21 @@ final router = GoRouter(
       name: 'homePage',
       path: '/homepage', // /home/perfil
       builder: (context, state) {
-        return const HomePage();
+        return HomePage();
       },
     ),GoRoute(
       name: 'agregarMedicamento',
       path: '/agregar', // /home/perfil
       builder: (context, state) {
-        return const AgregarMedicamento();
+        return AgregarMedicamento();
+      },
+    ),GoRoute(
+      name: 'lista-medicamentos',
+      path: '/lista-medicamentos', // /home/perfil
+      builder: (context, state) {
+        return MedicamentosAgregados();
       },
     ),
+    
   ],
 );

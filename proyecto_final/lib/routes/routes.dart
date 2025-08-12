@@ -8,6 +8,7 @@ import 'package:proyecto_final/views/home_page.dart';
 import 'package:proyecto_final/views/login_page.dart';
 import 'package:proyecto_final/views/medicamentos_agregados.dart';
 import 'package:proyecto_final/views/registration_page.dart';
+import 'package:proyecto_final/views/mostrar_medicamentos.dart';
 
 final router = GoRouter(
 
@@ -56,6 +57,12 @@ final router = GoRouter(
       path: '/agregar', 
       builder: (context, state) {
         return AgregarMedicamento();
+      },
+    ),GoRoute(
+      name: 'mostrarMedicamento',
+      path: '/mostrar', 
+      builder: (context, state) {
+        return MostrarMedicamentos();
       },
     ),GoRoute(
       name: 'lista-medicamentos',

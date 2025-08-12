@@ -25,7 +25,7 @@ class Opcion extends StatelessWidget {
             nombreOpcion == 'Agregar Medicamento'
                 ? Icons.medication 
                 : nombreOpcion == 'Eliminar Medicamentos'
-                    ? Icons.delete 
+                    ? Icons.delete_forever
                     : nombreOpcion == 'Modificar Medicamento'
                         ? Icons.edit 
                         : Icons.list_alt, 

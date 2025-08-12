@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proyecto_final/config/noti_service.dart';
+//import 'package:proyecto_final/config/noti_service.dart';
 import 'package:proyecto_final/controllers/medicamentos_controller.dart';
 import 'package:proyecto_final/widgets/opciones_main.dart';
 import '../widgets/side_menu.dart';
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            'hola (editar) *agregar hora', //aqui tiene que ir el nombre del usuari@ y tiene que cambiar el dia y noches por hora
+            'hola (editar) *agrega hora', //aqui tiene que ir el nombre del usuari@ y tiene que cambiar el dia y noches por hora
             style: TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 20),

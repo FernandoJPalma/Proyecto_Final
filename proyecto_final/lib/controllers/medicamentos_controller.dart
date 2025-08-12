@@ -1,15 +1,36 @@
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:proyecto_final/models/medicamento.dart';
+import 'package:proyecto_final/models/medicamento_provider.dart';
 
 class MedicamentosController extends GetxController {
   final GetStorage _storage = GetStorage();
   final RxList<Medicamento> medicamentos = <Medicamento>[].obs;
+  
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     cargarMedicamentosLocal();
+
+    try {
+
+    final cargadoDesdeJson = _storage.read('cargadoDesdeJson') ?? false;
+    if (!cargadoDesdeJson) {
+      final jsonList = await MedicamentoProvider().getMedicamentos()
+          .catchError((e) {
+            Get.snackbar('Error', 'Fallo al cargar desde API: $e');
+            return <dynamic>[];
+          });
+
+      if (jsonList.isNotEmpty) {
+        cargarMedicamentosDelJson(jsonList);
+        _storage.write('cargadoDesdeJson', true);
+      }
+    }
+  } catch (e) {
+    Get.log('Error en el onInit: $e', isError: true);
+  }
   }
 
   void cargarMedicamentosLocal() {
@@ -33,6 +54,27 @@ class MedicamentosController extends GetxController {
     medicamentos.removeAt(index);
     _storage.write('items', medicamentos);
   }
+
+  void cargarMedicamentosDelJson(List<dynamic> jsonList) {
+  try {
+    final List<Medicamento> loadedMedicamentos = jsonList
+        .map((json) {
+          try {
+            return Medicamento.fromJson(json);
+          } catch (e) {
+            throw 'Error en formato JSON del medicamento: $e';
+          }
+        })
+        .toList();
+
+    medicamentos.addAll(loadedMedicamentos);
+    _storage.write('medicamentos', medicamentos);
+  } catch (e) {
+    Get.snackbar('Error', 'No se pudieron cargar los medicamentos: $e');
+    rethrow;
+  }
+}
+
   // final _listaMedicamentos = <Medicamento>[].obs;
   //   void agregarMedicamento(Medicamento nuevomd) {
   //   final medicamentos = obtenerMedicamento();

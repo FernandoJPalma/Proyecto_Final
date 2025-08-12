@@ -9,6 +9,7 @@ void main() async {
   await NotiService().initNotification();
 
   await GetStorage.init('usuarioStorage');
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   
   //bloquear la orientación del dispositivo

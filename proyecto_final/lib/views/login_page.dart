@@ -16,7 +16,6 @@ class _LoginPageState extends State<LoginPage> {
   final _userController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
-  final usuarioStorage = GetStorage('usuarioStorage');
 
   void _login() {
     if (!_formKey.currentState!.validate()) {
@@ -25,26 +24,14 @@ class _LoginPageState extends State<LoginPage> {
     final user = _userController.text;
     final pass = _passwordController.text;
 
-    if (user == usuarioStorage.read('usuario') && pass == usuarioStorage.read('password')){
-      usuarioStorage.write('isLoggedIn', true);
+    if (user == GetStorage('usuarioStorage').read('usuario') && pass == GetStorage('usuarioStorage').read('password')){
+      GetStorage('usuarioStorage').write('isLoggedIn', true);
       context.go('/homepage');
     } else {
       _showSnackBar('Usuario o contraseña incorrectos');
     }
 
 
-
-    //TODO: Borrar antes de mandar 
-    // Usuario de prueba para el desarrollo
-    /*
-    if (user == 'usuario' && pass == '12345678') {
-      GetStorage().write('isLoggedIn', true);
-      GetStorage().write('user', _userController.text);
-      context.go('/homepage');
-    } else {
-      _showSnackBar('Usuario o contraseña incorrectos');
-    }
-    */
   }
   
 

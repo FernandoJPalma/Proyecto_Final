@@ -1,8 +1,10 @@
-class Medicamento {  final String nombre;
+class Medicamento {  
+  final String nombre;
   final String dosis;
   final Frecuencia frecuencia;
   final String descripcion;
   final List<DateTime> horas;
+
   Medicamento({
     required this.nombre,
     required this.dosis,
@@ -10,6 +12,7 @@ class Medicamento {  final String nombre;
     required this.horas,
     this.descripcion='',
   });
+  
   static List<DateTime> horasMedicamento(Frecuencia fr, DateTime horaInicio) {
     int dias = fr.dias;
     int hora = fr.horas;

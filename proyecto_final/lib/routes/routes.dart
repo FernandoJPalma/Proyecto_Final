@@ -15,17 +15,21 @@ final router = GoRouter(
   //initialLocation: '/login',
 
   redirect: (BuildContext context, GoRouterState state) {
-    final usuarioStorage = 'usuarioStorage';
-    final isLoggedIn = GetStorage(usuarioStorage).read('isLoggedIn') ?? false;
+    final isLoggedIn = GetStorage('usuarioStorage').read('isLoggedIn') ?? false;
+    final currentLocation = state.matchedLocation;
 
-    if (!isLoggedIn) { 
-      GetStorage().remove('user'); 
+    final publicRoutes = ['/login', '/signIn']; 
+
+    if (!isLoggedIn && !publicRoutes.contains(currentLocation)) { 
       return '/login';
+    }
+    if (isLoggedIn && publicRoutes.contains(currentLocation)) {
+      return '/homepage';
     }
 
     return null;
   },
-  initialLocation: '/homepage',
+  initialLocation: '/login',
   routes: [
     GoRoute(
       name: 'login',

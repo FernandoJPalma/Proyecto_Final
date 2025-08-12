@@ -15,7 +15,7 @@ class AgregarMedicamento extends StatelessWidget {
     final diasController = TextEditingController();
     final horasController = TextEditingController();
 
-    void _AgregarMedicina() {
+    void _agregarMedicina() {
       //Hacer las respectivas validaciones de cada campo
       final fr = Frecuencia(
         dias: int.parse(diasController.text),
@@ -111,7 +111,7 @@ class AgregarMedicamento extends StatelessWidget {
             },
           ),
           ElevatedButton(
-            onPressed: _AgregarMedicina,
+            onPressed: _agregarMedicina,
             child: const Text('Agregar medicina'),
           ),
         ],

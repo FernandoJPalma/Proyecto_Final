@@ -17,9 +17,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  final usuarioStorage = GetStorage('usuarioStorage');
-
-
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
@@ -30,15 +27,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
         return;
       }
 
-
-      // Aquí podrías guardar la información del usuario
-    context.go('/homepage');
-
       // Guardado de datos en GetStorage
-      usuarioStorage.write('nombre', _nombreController.text);
-      usuarioStorage.write('usuario', _usuarioController.text);
-      usuarioStorage.write('password', _passwordController.text);
-      usuarioStorage.write('isLoggedIn', true);
+      GetStorage('usuarioStorage').write('nombre', _nombreController.text);
+      GetStorage('usuarioStorage').write('usuario', _usuarioController.text);
+      GetStorage('usuarioStorage').write('password', _passwordController.text);
+      GetStorage('usuarioStorage').write('isLoggedIn', true);
 
       _mostrarSnackBar('Usuario registrado correctamente');
 

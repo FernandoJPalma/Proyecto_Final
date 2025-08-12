@@ -3,9 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 
 class SideMenu extends StatelessWidget {
-  SideMenu({super.key});
-  
-  final usuarioStorage = GetStorage('usuarioStorage');
+  const SideMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class SideMenu extends StatelessWidget {
                         ),
                         onPressed: () {
                           Navigator.of(context).pop();
-                          usuarioStorage.write('isLoggedIn', false);
+                          GetStorage('usuarioStorage').write('isLoggedIn', false);
                           context.go('/login');
                         },
                         child: Text('Sí'),

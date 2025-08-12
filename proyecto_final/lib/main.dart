@@ -8,6 +8,7 @@ import 'package:timezone/timezone.dart';
 
 void main() async {
   await GetStorage.init('usuarioStorage');
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   
   //bloquear la orientación del dispositivo

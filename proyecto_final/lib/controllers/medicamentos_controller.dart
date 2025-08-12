@@ -55,6 +55,14 @@ class MedicamentosController extends GetxController {
     _storage.write('items', medicamentos);
   }
 
+  void actualizarMedicamento(int index, Medicamento nuevosDatos) {
+  if (index >= 0 && index < medicamentos.length) {
+    medicamentos[index] = nuevosDatos;
+    _storage.write('items', medicamentos); // Si usas almacenamiento local
+    update(); // Notificar a los listeners
+  }
+}
+
   void cargarMedicamentosDelJson(List<dynamic> jsonList) {
   try {
     final List<Medicamento> loadedMedicamentos = jsonList

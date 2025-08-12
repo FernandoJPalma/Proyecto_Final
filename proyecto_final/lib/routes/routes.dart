@@ -16,13 +16,14 @@ final router = GoRouter(
     final usuarioStorage = 'usuarioStorage';
     final isLoggedIn = GetStorage(usuarioStorage).read('isLoggedIn') ?? false;
 
-    if (isLoggedIn) { 
-      return '/homepage';
+    if (!isLoggedIn) { 
+      GetStorage().remove('user'); 
+      return '/login';
     }
 
     return null;
   },
-  initialLocation: '/login',
+  initialLocation: '/homepage',
   routes: [
     GoRoute(
       name: 'login',

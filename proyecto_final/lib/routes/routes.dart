@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:proyecto_final/models/medicamento.dart';
 import 'package:proyecto_final/views/agregar_medicamento.dart';
 import 'package:proyecto_final/views/detalle_medicamento.dart';
+import 'package:proyecto_final/views/eliminar_medicamentos.dart';
 import 'package:proyecto_final/views/home_page.dart';
 import 'package:proyecto_final/views/login_page.dart';
 import 'package:proyecto_final/views/medicamentos_agregados.dart';
@@ -63,6 +64,12 @@ final router = GoRouter(
       path: '/mostrar', 
       builder: (context, state) {
         return MostrarMedicamentos();
+      },
+    ),GoRoute(
+      name: 'eliminarMedicamento',
+      path: '/eliminar', 
+      builder: (context, state) {
+        return EliminarMedicamentos();
       },
     ),GoRoute(
       name: 'lista-medicamentos',

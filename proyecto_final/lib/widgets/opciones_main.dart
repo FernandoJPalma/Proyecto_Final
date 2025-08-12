@@ -20,7 +20,7 @@ class OpcionesMain extends StatelessWidget {
             ),
             Opcion(
               nombreOpcion: 'Eliminar medicamentos',
-              nombreRuta: '/lista-medicamentos',
+              nombreRuta: '/eliminar',
             ),
             Opcion(
               nombreOpcion: 'Modificar Medicamento',

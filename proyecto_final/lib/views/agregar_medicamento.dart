@@ -44,7 +44,7 @@ class AgregarMedicamento extends StatelessWidget {
             kbtype: TextInputType.name,
             textError: 'Debe contener al menos 20 caracteres',
             validator: (value) {
-              if (value.length < 20 && value.isNotEmpty) {
+              if (value.length < 4 && value.isNotEmpty) {
                 return true;
               } else {
                 return false;
@@ -73,7 +73,7 @@ class AgregarMedicamento extends StatelessWidget {
             kbtype: TextInputType.number,
             textError: 'Interva lo de hora invalido',
             validator: (value) {
-              if (value.length < 2 && value.isNotEmpty) {
+              if (value.length < 1 && value.isNotEmpty) {
                 return true;
               } else {
                 return false;

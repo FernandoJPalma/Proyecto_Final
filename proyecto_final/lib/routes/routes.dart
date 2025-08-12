@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
+import 'package:proyecto_final/models/medicamento.dart';
 import 'package:proyecto_final/views/agregar_medicamento.dart';
+import 'package:proyecto_final/views/detalle_medicamento.dart';
 import 'package:proyecto_final/views/home_page.dart';
 import 'package:proyecto_final/views/login_page.dart';
 import 'package:proyecto_final/views/medicamentos_agregados.dart';
@@ -56,6 +58,13 @@ final router = GoRouter(
       path: '/lista-medicamentos', 
       builder: (context, state) {
         return MedicamentosAgregados();
+      },
+    ),GoRoute(
+      name: 'detalle medicamento',
+      path: '/detalle-medicamento', 
+      builder: (context, state) {
+        final medicamento = state.extra as Medicamento;
+        return DetalleMedicamento(medicamento: medicamento,);
       },
     ),
     

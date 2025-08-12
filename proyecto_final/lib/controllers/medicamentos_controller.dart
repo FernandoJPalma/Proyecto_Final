@@ -15,10 +15,9 @@ class MedicamentosController extends GetxController {
   void cargarMedicamentosLocal() {
     if (_storage.read('medicamentos') != null) {
       final List<Medicamento> storedItems = List<Medicamento>.from(
-        _storage.read('medicamentos').map((c)=>Medicamento.fromJson(c))
+        _storage.read('medicamentos').map((c) => Medicamento.fromJson(c)),
       );
       medicamentos.assignAll(storedItems);
-      print(storedItems);
     }
     // print(_storage.read('medicamentos'));
   }
@@ -29,10 +28,11 @@ class MedicamentosController extends GetxController {
     _storage.write('medicamentos', medicamentos);
     print(medicamentos);
   }
+
   void removeItem(int index) {
-      medicamentos.removeAt(index);
-      _storage.write('items', medicamentos);
-    }
+    medicamentos.removeAt(index);
+    _storage.write('items', medicamentos);
+  }
   // final _listaMedicamentos = <Medicamento>[].obs;
   //   void agregarMedicamento(Medicamento nuevomd) {
   //   final medicamentos = obtenerMedicamento();

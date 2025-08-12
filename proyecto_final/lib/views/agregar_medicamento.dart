@@ -11,14 +11,21 @@ class AgregarMedicamento extends StatelessWidget {
   Widget build(BuildContext context) {
     final nombreController = TextEditingController();
     final dosisController = TextEditingController();
-    final frecuenciaController = TextEditingController();
     final descripcionController = TextEditingController();
+    final diasController = TextEditingController();
+    final horasController = TextEditingController();
 
     void _AgregarMedicina() {
+      //Hacer las respectivas validaciones de cada campo
+      final fr = Frecuencia(
+        dias: int.parse(diasController.text),
+        horas: int.parse(horasController.text),
+      );
       final Medicamento med = Medicamento(
         nombre: nombreController.text,
         dosis: dosisController.text,
-        frecuencia: frecuenciaController.text,
+        frecuencia: fr,
+        horas: Medicamento.horasMedicamento(fr, DateTime.now()),
         descripcion: descripcionController.text,
       );
       medicamentoController.agregarMedicamento(med);
@@ -60,9 +67,23 @@ class AgregarMedicamento extends StatelessWidget {
             },
           ),
           TextFieldBasic(
-            txtController: frecuenciaController,
-            label: Text('Frecuencia'),
+            txtController: horasController,
+            label: Text('Horas'),
             hintText: 'Ingrese cada cuantas horas se debe tomar el medicamento',
+            kbtype: TextInputType.number,
+            textError: 'Interva lo de hora invalido',
+            validator: (value) {
+              if (value.length < 2 && value.isNotEmpty) {
+                return true;
+              } else {
+                return false;
+              }
+            },
+          ),
+          TextFieldBasic(
+            txtController: diasController,
+            label: Text('Dias'),
+            hintText: 'Ingrese por cuantos dias tomara el medicamento',
             kbtype: TextInputType.number,
             textError: 'Interva lo de hora invalido',
             validator: (value) {

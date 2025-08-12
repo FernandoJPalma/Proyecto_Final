@@ -1,29 +1,26 @@
-import 'package:flutter/material.dart';
-
-class Medicamento {
-  final String nombre;
+class Medicamento {  final String nombre;
   final String dosis;
   final Frecuencia frecuencia;
-  final String? descripcion;
-  final List<TimeOfDay> horas;
+  final String descripcion;
+  final List<DateTime> horas;
   Medicamento({
     required this.nombre,
     required this.dosis,
     required this.frecuencia,
     required this.horas,
-    this.descripcion,
+    this.descripcion='',
   });
-  static List<TimeOfDay> horasMedicamento(Frecuencia fr, TimeOfDay horaInicio) {
+  static List<DateTime> horasMedicamento(Frecuencia fr, DateTime horaInicio) {
     int dias = fr.dias;
     int hora = fr.horas;
     int veces = 0;
-    List<TimeOfDay> horasMedicamento = [];
+    // int h = horaInicio.hour;
+    // int m = horaInicio.minute;
+    List<DateTime> horasMedicamento = [];
 
-    while (dias * 24 < veces) {
-      int h = horaInicio.hour;
-      int m = horaInicio.minute;
-      horasMedicamento.add(TimeOfDay(hour: h + hora, minute: m));
+    while (dias * 24 > veces) {
       veces = veces + hora;
+      horasMedicamento.add(horaInicio.add(Duration(hours: veces)));
     }
 
     return horasMedicamento;
@@ -34,13 +31,9 @@ class Medicamento {
     dosis: map["dosis"],
     frecuencia: Frecuencia.fromJson(map["frecuencia"]),
     descripcion: map["descripcion"],
-    horas: (map['horas'] as List).map((h) {
-      final partes = h.split(':');
-      return TimeOfDay(
-        hour: int.parse(partes[0]),
-        minute: int.parse(partes[1]),
-      );
-    }).toList(),
+    horas: (map['horas'] as List)
+          .map((f) => DateTime.parse(f as String))
+          .toList(),
   );
 
   Map<String, dynamic> toJson() => {
@@ -49,12 +42,7 @@ class Medicamento {
     'dosis': dosis,
     'frecuencia': frecuencia.toJson(),
     'descripcion': descripcion,
-    'horas': horas
-        .map(
-          (h) =>
-              '${h.hour.toString().padLeft(2, '0')}:${h.minute.toString().padLeft(2, '0')}',
-        )
-        .toList(),
+    'horas': horas.map((f) => f.toIso8601String()).toList(),
   };
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proyecto_final/config/noti_service.dart';
 import 'package:proyecto_final/controllers/medicamentos_controller.dart';
 import 'package:proyecto_final/widgets/opciones_main.dart';
 import '../widgets/side_menu.dart';
@@ -51,6 +52,18 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           OpcionesMain(),
+          
+          const SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              NotiService().showNotification(
+                title: "Titulo",
+                body: "mensaje",
+              );
+            },
+            child: const Text("notificacion")),
+
+
         ],
       ),
     );

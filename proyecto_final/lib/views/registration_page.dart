@@ -14,7 +14,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   final _nombreController = TextEditingController();
   final _usuarioController = TextEditingController();
-  final _correoController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
@@ -38,7 +37,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
       // Guardado de datos en GetStorage
       usuarioStorage.write('nombre', _nombreController.text);
       usuarioStorage.write('usuario', _usuarioController.text);
-      usuarioStorage.write('correo', _correoController.text);
       usuarioStorage.write('password', _passwordController.text);
       usuarioStorage.write('isLoggedIn', true);
 
@@ -59,7 +57,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
   void dispose() {
     _nombreController.dispose();
     _usuarioController.dispose();
-    _correoController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
@@ -84,13 +81,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
               TextFormField(
                 controller: _usuarioController,
                 decoration: const InputDecoration(labelText: 'Usuario'),
-                validator: (value) =>
-                    value!.isEmpty ? 'Este campo es obligatorio' : null,
-              ),
-              TextFormField(
-                controller: _correoController,
-                decoration: const InputDecoration(labelText: 'Correo'),
-                keyboardType: TextInputType.emailAddress,
                 validator: (value) =>
                     value!.isEmpty ? 'Este campo es obligatorio' : null,
               ),

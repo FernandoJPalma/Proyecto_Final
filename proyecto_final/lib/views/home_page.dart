@@ -53,15 +53,26 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 20),
           OpcionesMain(),
           
-          const SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              NotiService().showNotification(
-                title: "Titulo",
-                body: "mensaje",
-              );
+
+          
+          /*ElevatedButton(
+            onPressed: () async {
+              try {
+                await NotiService().showNotification(
+                  id: 1, // ID único
+                  title: "Recordatorio de Medicamento",
+                  body: "Es hora de tomar tu medicamento",
+                );
+              } catch (e) {
+                debugPrint('Error al mostrar notificación: $e');
+                // Opcional: mostrar un mensaje al usuario
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Error al mostrar notificación: ${e.toString()}')),
+                );
+              }
             },
-            child: const Text("notificacion")),
+            child: const Text("Mostrar Notificación"),
+          ),*/
 
 
         ],

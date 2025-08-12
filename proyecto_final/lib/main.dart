@@ -6,7 +6,7 @@ import 'routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  NotiService().initNotification();
+  await NotiService().initNotification();
 
   await GetStorage.init('usuarioStorage');
   WidgetsFlutterBinding.ensureInitialized();

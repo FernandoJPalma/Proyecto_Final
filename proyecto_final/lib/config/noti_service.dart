@@ -1,18 +1,16 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotiService {
-final notificationsPlugin = FlutterLocalNotificationsPlugin();
-
-bool _isInitialized = false;
-
-bool get isInitialized => _isInitialized;
+final FlutterLocalNotificationsPlugin notificationsPlugin = 
+      FlutterLocalNotificationsPlugin();
 
 Future<void> initNotification() async {
-  if(_isInitialized) return;
-
-  const initSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
+  const AndroidInitializationSettings initSettingsAndroid = 
+      AndroidInitializationSettings('ic_notification');
   
-  const initSettingsIOS = DarwinInitializationSettings(
+  const DarwinInitializationSettings initSettingsIOS = 
+      DarwinInitializationSettings(
     requestAlertPermission: true,
     requestBadgePermission: true,
     requestSoundPermission: true,
@@ -24,6 +22,18 @@ Future<void> initNotification() async {
   );
   
   await notificationsPlugin.initialize(initSettings);
+
+  const AndroidNotificationChannel channel = AndroidNotificationChannel(
+      'daily_channel_id', // id
+      'Daily Notifications', // title
+      description: 'Daily Notification Channel',
+      importance: Importance.max,
+    );
+
+    await notificationsPlugin
+        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+
 }
 
   NotificationDetails notificationDetails() {
@@ -34,20 +44,27 @@ Future<void> initNotification() async {
         channelDescription: 'Daily Notification Channel',
         importance: Importance.max,
         priority: Priority.high,
+        icon: 'ic_notification',
+        playSound: true,
       ),
       iOS: DarwinNotificationDetails(),
     );
   }
 
   Future<void> showNotification({
-    int id = 0,
-    String? title,
-    String? body,
+    required id,
+    required String title,
+    required String body,
   }) async {
-    return notificationsPlugin.show(id, title, body, const NotificationDetails());
+    try{
+      return notificationsPlugin.show(
+        id, 
+        title, 
+        body, 
+        const NotificationDetails());
+    }catch(e){
+      debugPrint('Error al mostrar la notificacion: $e');
+    }
+
   }
-
-
-
-
 }

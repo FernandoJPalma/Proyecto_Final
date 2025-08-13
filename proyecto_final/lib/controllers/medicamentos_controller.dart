@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:proyecto_final/config/noti_service.dart';
 import 'package:proyecto_final/models/medicamento.dart';
 import 'package:proyecto_final/models/medicamento_provider.dart';
 
@@ -15,20 +16,41 @@ class MedicamentosController extends GetxController {
     try {
       final cargadoDesdeJson = _storage.read('cargadoDesdeJson') ?? false;
       if (!cargadoDesdeJson) {
-        final jsonList = await MedicamentoProvider()
+        final listaMedicamentosApi = await MedicamentoProvider()
             .getMedicamentos()
             .catchError((e) {
               Get.snackbar('Error', 'Fallo al cargar desde API: $e');
               return <Medicamento>[];
             });
 
-        if (jsonList.isNotEmpty) {
-          cargarMedicamentosDelJson(jsonList);
+        if (listaMedicamentosApi.isNotEmpty) {
+          cargarMedicamentosDelJson(listaMedicamentosApi);
           _storage.write('cargadoDesdeJson', true);
         }
       }
     } catch (e) {
       Get.log('Error en el onInit: $e', isError: true);
+    }
+    await cargarHorasApi();
+  }
+
+  Future<void> cargarHorasApi() async {
+    final List<Medicamento> md = _storage.read('medicamentos');
+
+    if (md.isNotEmpty) {
+      int id = 0;
+
+      for (final medicina in md) {
+        int h = medicina.frecuencia.horas;
+        int d = medicina.frecuencia.dias;
+        int veces = 0;
+
+        while (d * 24 > veces) {
+          veces += h;
+          await NotiService().programarNotificaciones(id, veces);
+          id++;
+        }
+      }
     }
   }
 

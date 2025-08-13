@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ThemeColor {
-  final Color primary = Color(0xFF6BD559);
-  final Color secondary = Color(0xFF6EAA63);
-  final Color iconColor = Color(0xFF286F1C);
-  final Color primaryBtn = Color(0xFF273325);
-  final Color secondaryBtn = Color(0xFF4C544A);
-  final Color extra = Color(0xFF648060);
+  final Color color1 = Color(0xFF1B90D3);
+  final Color color2 = Color(0xFF202C33);
+  final Color color3 = Color(0xFF2B5770);
+  final Color color4 = Color(0xFF1778B1);
+  final Color fuente = Color(0xFFC4C4C4);
+  final Color color6 = Color(0xFFB06F17);
 }
 
 
+ 

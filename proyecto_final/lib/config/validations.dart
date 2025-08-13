@@ -35,11 +35,11 @@ class _TextFieldBasicState extends State<TextFieldBasic> {
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: ThemeColor().iconColor),
+          borderSide: BorderSide(color: ThemeColor().color3),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: ThemeColor().primary, width: 2),
+          borderSide: BorderSide(color: ThemeColor().color3, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
@@ -53,11 +53,11 @@ class _TextFieldBasicState extends State<TextFieldBasic> {
         label: widget.label,
         hintText: widget.hintText,
         prefixIcon: widget.icon,
-        hintStyle: TextStyle(color: ThemeColor().secondary),
+        hintStyle: TextStyle(color: ThemeColor().color3),
         labelStyle: TextStyle(
-          color: !error ? ThemeColor().secondary : Colors.red,
+          color: !error ? ThemeColor().color3 : Colors.red,
         ),
-        prefixIconColor: !error ? ThemeColor().iconColor : Colors.red,
+        prefixIconColor: !error ? ThemeColor().color3 : Colors.red,
         errorText: !error ? null : widget.textError,
         errorStyle: !error ? null : TextStyle(color: Colors.red),
       ),
@@ -95,8 +95,8 @@ class TextFieldPassword extends StatefulWidget {
 
 class _TextFieldPasswordState extends State<TextFieldPassword> {
   var obsText = true;
-  var error = false;
-  @override
+  var error = false; 
+  @override 
   Widget build(BuildContext context) {
     return TextField(
       controller: widget.txtController,
@@ -105,11 +105,11 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: ThemeColor().iconColor),
+          borderSide: BorderSide(color: ThemeColor().color3),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: ThemeColor().primary, width: 2),
+          borderSide: BorderSide(color: ThemeColor().color3, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
@@ -123,14 +123,14 @@ class _TextFieldPasswordState extends State<TextFieldPassword> {
         label: widget.label,
         hintText: widget.hintText,
         prefixIcon: widget.icon,
-        hintStyle: TextStyle(color: ThemeColor().secondary),
+        hintStyle: TextStyle(color: ThemeColor().color3),
         labelStyle: TextStyle(
-          color: !error ? ThemeColor().secondary : Colors.red,
+          color: !error ? ThemeColor().color3 : Colors.red,
         ),
-        prefixIconColor: !error ? ThemeColor().iconColor : Colors.red,
+        prefixIconColor: !error ? ThemeColor().color3 : Colors.red,
         errorText: !error ? null : widget.textError,
         errorStyle: !error ? null : TextStyle(color: Colors.red),
-        suffixIconColor: ThemeColor().iconColor,
+        suffixIconColor: ThemeColor().color3,
         suffixIcon: IconButton(
           icon: Icon(Icons.remove_red_eye),
           onPressed: () {

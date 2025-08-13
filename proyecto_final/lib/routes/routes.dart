@@ -7,7 +7,7 @@ import 'package:proyecto_final/views/detalle_medicamento.dart';
 import 'package:proyecto_final/views/eliminar_medicamentos.dart';
 import 'package:proyecto_final/views/home_page.dart';
 import 'package:proyecto_final/views/login_page.dart';
-import 'package:proyecto_final/views/medicamentos_agregados.dart';
+import 'package:proyecto_final/views/fragments/medicamentos_agregados.dart';
 import 'package:proyecto_final/views/modificar_medicamentos.dart';
 import 'package:proyecto_final/views/registration_page.dart';
 import 'package:proyecto_final/views/mostrar_medicamentos.dart';

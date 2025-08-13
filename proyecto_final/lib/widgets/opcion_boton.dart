@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:proyecto_final/config/configuration_design.dart';
 
 class Opcion extends StatelessWidget {
   
@@ -20,7 +21,7 @@ class Opcion extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          //Icon(Icons.home, size: 40, color: Colors.blueGrey),
+          //Icon(Icons.home, size: 40, color: ThemeColor().color2),
           Icon(
             nombreOpcion == 'Agregar Medicamento'
                 ? Icons.medication 
@@ -30,7 +31,7 @@ class Opcion extends StatelessWidget {
                         ? Icons.edit 
                         : Icons.list_alt, 
             size: 40,
-            color: Colors.blueGrey,
+            color: ThemeColor().color2,
           ),
           SizedBox(height: 10),
           Text(nombreOpcion, style: TextStyle(color: Colors.black)),

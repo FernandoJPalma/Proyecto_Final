@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proyecto_final/config/configuration_design.dart';
 import 'package:proyecto_final/config/validations.dart';
 import 'package:proyecto_final/controllers/medicamentos_controller.dart';
 import 'package:proyecto_final/models/medicamento.dart';
@@ -73,9 +74,9 @@ class AgregarMedicamento extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        elevation: 0,
-        title: Text(modoEdicion ? 'Editar Medicamento' : 'Agregar Medicamento'),
+        title: const Text('Agregar Medicamento'),
+        backgroundColor: ThemeColor().color2,
+        foregroundColor: ThemeColor().fuente,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -126,7 +127,7 @@ class AgregarMedicamento extends StatelessWidget {
             ElevatedButton(
               onPressed: _guardarMedicamento,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: ThemeColor().color2,
                 minimumSize: const Size(double.infinity, 50),
               ),
               child: Text(

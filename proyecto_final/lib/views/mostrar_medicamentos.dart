@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_final/config/configuration_design.dart';
 import 'package:proyecto_final/views/fragments/lista_medicamentos.dart';
 
 class MostrarMedicamentos extends StatelessWidget {
@@ -9,7 +10,7 @@ class MostrarMedicamentos extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mis Medicamentos'),
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: ThemeColor().color2,
         foregroundColor: Colors.white,
       ),
       body: Padding(
@@ -26,7 +27,7 @@ class MostrarMedicamentos extends StatelessWidget {
       ),
       /*floatingActionButton: FloatingActionButton(
         onPressed: () => context.push('/agregar'),
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: ThemeColor().color2,
         child: const Icon(Icons.add, color: Colors.white),
       ),*/
     );

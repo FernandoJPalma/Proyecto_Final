@@ -4,9 +4,11 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    
     <application
-        android:label="proyecto_final"
+        android:label="MedTime"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -13,14 +13,6 @@ class SideMenu extends StatelessWidget {
         children: [
           ListTile(
             leading: Icon(Icons.edit),
-            title: Text('(editar)'),
-          ),
-          ListTile(
-            leading: Icon(Icons.edit),
-            title: Text('(editar)'),
-          ),
-          ListTile(
-            leading: Icon(Icons.edit),
             title: Text('Cerrar sesión'),
             onTap: () {
               showDialog(

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:proyecto_final/config/noti_service.dart';
+//import 'package:proyecto_final/config/noti_service.dart';
 import 'package:proyecto_final/models/medicamento.dart';
 import 'package:proyecto_final/models/medicamento_provider.dart';
 
@@ -31,10 +31,10 @@ class MedicamentosController extends GetxController {
     } catch (e) {
       Get.log('Error en el onInit: $e', isError: true);
     }
-    await cargarHorasApi();
+    //await cargarHorasApi();
   }
 
-  Future<void> cargarHorasApi() async {
+  /*Future<void> cargarHorasApi() async {
     final List<Medicamento> md = _storage.read('medicamentos');
 
     if (md.isNotEmpty) {
@@ -52,7 +52,7 @@ class MedicamentosController extends GetxController {
         }
       }
     }
-  }
+  }*/
 
   void cargarMedicamentosLocal() {
     if (_storage.read('medicamentos') != null) {
